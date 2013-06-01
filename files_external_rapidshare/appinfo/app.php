@@ -1,12 +1,10 @@
 <?php
 
 /**
-* ownCloud - App Template plugin
+* files_external - RapidShare backend
 *
-* @author Frank Karlitschek
-* @author Florian Hülsmann
-* @copyright 2011 Frank Karlitschek karlitschek@kde.org
-* @copyright 2012 Florian Hülsmann fh@cbix.de
+* @author Philipp Kapfer
+* @copyright 2013 Philipp Kapfer philipp.kapfer@gmx.at
 * 
 * This library is free software; you can redistribute it and/or
 * modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
@@ -23,12 +21,14 @@
 * 
 */
 
-OCP\App::registerAdmin( 'apptemplate', 'settings' );
-
-OCP\App::addNavigationEntry( array( 
-	'id' => 'apptemplate',
-	'order' => 74,
-	'href' => OCP\Util::linkTo( 'apptemplate', 'index.php' ),
-	'icon' => OCP\Util::imagePath( 'apptemplate', 'example.png' ),
-	'name' => 'App Template'
-));
+if (OC_App::isEnabled('files_external')) {
+	OC::$CLASSPATH['OC\Files\Storage\RapidShare'] = 'apps2/files_external_rapidshare/lib/rapidshare.php';
+	OC_App::loadApp('files_external');	// Ensure that the files_external app is already loaded to register backend
+	OC_Mount_Config::registerBackend('OC\Files\Storage\RapidShare', array(
+		'backend' => 'RapidShare',
+		'configuration' => array(
+			'user' => 'Username',
+			'password' => '*Password',
+			'root' => '&Root'),
+	'has_dependencies' => true));
+}

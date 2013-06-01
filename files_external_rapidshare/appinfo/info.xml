@@ -1,10 +1,13 @@
 <?xml version="1.0"?>
 <info>
-	<id>apptemplate</id>
-	<name>AppTemplate</name>
-	<description>Just an example application as a starting point for new developers</description>
+	<id>files_external_rapidshare</id>
+	<name>External storage support - RapidShare backend</name>
+	<description>Mount RapidShare storage into your data directory. PLEASE NOTE: You also need to enable the "External storage support" app to use this app!</description>
 	<version>1.0</version>
 	<licence>AGPL</licence>
-	<author>Frank Karlitschek</author>
-	<require>4</require>
+	<author>Philipp Kapfer</author>
+	<require>4.93</require>
+    <types>
+        <filesystem/>
+    </types>
 </info>
